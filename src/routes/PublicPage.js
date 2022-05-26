@@ -8,31 +8,66 @@ import dogimage from '../images/dog1.png'
 import Login from './Login'
 import patas from '../images/pets.png'
 import symbol from '../images/symbol.png'
+import patasblue from '../images/petsblue.png'
+
 
 function Home() {
   return (
-<Stack  display='flex'  direction={{ base: 'column', md:'row' }}>
-     <Flex w={['360px','767px']} 
-           h={['262px','720px']}
-           flex={1} 
-           backgroundImage = {dogimage} 
-           backgroundRepeat ={'no-repeat'} 
-           position={'stact'} 
+<Flex display={'flex'} direction={['column', 'row']} >
+     <Flex
            align={'center'} 
            justify='center'>
-             <Image src={patas}  display='flex' left={179} position={'absolute'}/>
-            <Text  fontSize={'51.5px'} color={'#FFFFFF'} fontFamily= {'Roboto'}  fontWeight={'700'}left={289} position={'absolute'} >PETWITTER</Text>
+             <Flex>
+                <Image src={dogimage}  
+                        display='flex'  
+                        w={['100%','767px']} 
+                        h={['100%','720px']}/>
+
+                    <Image src={patas}  
+                            display='flex'    
+                            left={[37,179]} 
+                            top={[67,354]} 
+                            position={'absolute'}
+                            w={['72px','77px']}  />
+
+                        <Text  fontSize={['0%','51.5px']} 
+                              color={'#FFFFFF'} 
+                              fontFamily= {'Roboto'}  
+                              fontWeight={'700'}  
+                              left={289} 
+                              top={[67,354]} 
+                              position={'absolute'} > PETWITTER</Text>
+
+                              <Text  fontSize={['36px','0%']} 
+                                    color={'#FFFFFF'} 
+                                    fontFamily= {'Open Sans'} 
+                                    fontStyle={'normal'} 
+                                    fontWeight={'700'}  
+                                    left={26} 
+                                    top={139.12} 
+                                    position={'absolute'} >Comece agora.<p>Conecte-se já.</p></Text>
+            </Flex>
       </Flex>
-      <Flex p={12} flex={1} align={'center'}>
-        <Stack spacing={4} w={'full'} maxW={'md'}>
-          <Flex flex={1} >
-              <Image src={symbol}/>
-          </Flex>
+     <Flex  justifyContent={'center'} align={'center'} marginLeft={'32px'}>
+        <Stack spacing={4} w={'full'} >
+              <Image src={symbol} w={['0%','76px']} />
               <Login/>
-        </Stack>
-         </Flex>
-      
-</Stack>
+          </Stack>
+     </Flex>
+     <Flex display={'flex'} justifyContent='center' marginTop={'50px'}>
+                      <Image 
+                           src={patasblue}  
+                            display='flex'    
+                            w={['29px','0%']} 
+                            />
+
+                        <Text  fontSize={['21px','0%']} 
+                              color={'#00ACC1'} 
+                              fontFamily= {'Roboto'}  
+                              fontWeight={'700'}  
+                              marginLeft={'21px'}> PETWITTER</Text>
+                        </Flex>
+</Flex>
   );
 }
 export default Home;
