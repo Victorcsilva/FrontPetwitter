@@ -1,6 +1,6 @@
 Utilizando mobile first, recomendamos seguir a seguinte ordem de desenvolvimento:
 1-[x]Tela de login (front);
-2-[● ]Tela de cadastro (front);
+2-[x]Tela de cadastro (front);
 4-[● ] Menu mobile e desktop;
 5-[● ] Component Petweet (mobile e desktop);
 6-[● ] Página de usuário;
