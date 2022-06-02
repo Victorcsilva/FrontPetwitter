@@ -48,7 +48,7 @@ function Home() {
              position={'absolute'} >Comece agora.<p>Conecte-se já.</p></Text>
             </Flex>
          </Flex>
-     <Flex  justifyContent={'center'} align={'center'} marginLeft={'32px'}>
+      <Flex  justifyContent={'center'} align={'center'} marginLeft={'32px'}>
         <Stack spacing={4} w={'full'} >
               <Image src={symbol} w={['0%','76px']} />
               <Login/>

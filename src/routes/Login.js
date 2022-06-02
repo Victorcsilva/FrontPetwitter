@@ -7,10 +7,15 @@ import {Heading,
         Input,
         Flex,
         Text,
+        InputGroup,
+        InputRightElement,
        } from '@chakra-ui/react';
  import { Link as ReachLink } from "react-router-dom"
+ import React from "react";
    
   function Login() {
+    const [show, setShow] = React.useState(false)
+    const handleClick = () => setShow(!show)
       const navigate = useNavigate();
       const location = useLocation();
       const { signin } = useAuth();
@@ -40,7 +45,19 @@ import {Heading,
                 <Text mb='8px'>E-mail:</Text>
                   <Input name="email" type="text" placeholder="E-mail" focusBorderColor='#00ACC1'/>
                      <Text mb='8px'> Senha: </Text>
-                        <Input name="password" type="password" placeholder="Senha" focusBorderColor='#00ACC1'/>
+                     <InputGroup size='md'>
+                        <Input
+                         focusBorderColor='#00ACC1'
+                          pr='4.5rem'
+                          type={show ? 'text' : 'password'}
+                          placeholder='Enter password'
+                        />
+                        <InputRightElement width='4.5rem'>
+                          <Button h='1.75rem' size='sm' onClick={handleClick}>
+                            {show ? 'Hide' : 'Show'}
+                          </Button>
+                        </InputRightElement>
+                      </InputGroup>
                             <Button 
                                type="submit"
                                w={['296px','368px']}
