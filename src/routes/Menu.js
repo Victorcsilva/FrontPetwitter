@@ -1,29 +1,13 @@
-import {
-  IconButton,
-  Box,
-  CloseButton,
-  Flex,
-  useColorModeValue,
-  Drawer,
-  DrawerContent,
-  Text,
-  useDisclosure,
-  Image,
-} from '@chakra-ui/react';
-import {
-  FiMenu,
-} from 'react-icons/fi';
+import {IconButton, Box, CloseButton, Flex, useColorModeValue, Drawer, DrawerContent, Text, useDisclosure, Image,} from '@chakra-ui/react';
+import {FiMenu,} from 'react-icons/fi';
 import patasblue from '../images/petsblue.png'
 import DogAvatar from '../images/Avatar.png'
 
 export default function SimpleSidebar({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  return (
-    <Box minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
-      <SidebarContent
-        onClose={() => onClose}
-        display={{ base: 'none', md: 'block' }}
-      />
+      return (
+     <Box minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
+      <SidebarContent onClose={() => onClose}display={{ base: 'none', md: 'block' }} />
       <Drawer
         autoFocus={false}
         isOpen={isOpen}
@@ -36,7 +20,7 @@ export default function SimpleSidebar({ children }) {
           <SidebarContent onClose={onClose} />
         </DrawerContent>
       </Drawer>
-      {/* mobilenav */}
+
       <MobileNav display={{ base: 'flex', md: 'none' }} onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p="4">
         {children}
@@ -92,7 +76,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
         border='ffffff'
       />
    <Flex h="20" alignItems="center" mx="18" justifyContent="space-between">
-      <Image src={patasblue} display='flex' w={['29px','0%']}/>
+          <Image src={patasblue} display='flex' w={['29px','0%']}/>
           <Text  fontSize={['21px','0%']} 
                  color={'#00ACC1'} 
                  fontFamily= {'Roboto'}  
@@ -100,6 +84,6 @@ const MobileNav = ({ onOpen, ...rest }) => {
                  marginLeft={'21px'}> PETWITTER
           </Text>
     </Flex>
-</Flex>
-  );
+  </Flex>
+ );
 };

@@ -1,9 +1,4 @@
-import {
-  Flex,
-  Stack,
-  Image,
-  Text
-} from '@chakra-ui/react';
+import { Flex, Stack, Image, Text} from '@chakra-ui/react';
 import dogimage from '../images/dog1.png'
 import Login from './Login'
 import patas from '../images/pets.png'
