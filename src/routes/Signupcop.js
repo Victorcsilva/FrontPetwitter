@@ -17,7 +17,7 @@ import patasblue from "../images/petsblue.png";
 import { Link as ReachLink } from "react-router-dom";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { signup } from "../services/auth";
+import { signup } from "../services/auth.js";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
@@ -46,17 +46,16 @@ function Signup() {
     setError,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
+
   const onSubmit = async (data) => {
     console.log(data);
     try {
-      const response = await signup(data);
-      console.log(response);
+      await signup(data);
+      // console.log(response);
     } catch (error) {
       console.log(error);
     }
   };
-  console.log(errors);
-
   return (
     <Flex display={"flex"} direction={["column", "row"]}>
       <Flex align={"center"} justify="center">
@@ -83,7 +82,8 @@ function Signup() {
             top={[67, 354]}
             position={"absolute"}
           >
-            {" PETWITTER "}
+            {" "}
+            PETWITTER
           </Text>
         </Flex>
       </Flex>
@@ -97,18 +97,19 @@ function Signup() {
               fontWeight={"600"}
               marginTop={"32px"}
             >
-              {"Cadastro"}
+              {" "}
+              Cadastro
             </Heading>
-            <Flex as="form" mt="20px" onSubmit={handleSubmit(onSubmit)}>
+            <form as="form" mt="20px" onSubmit={handleSubmit(onSubmit)}>
               <Stack
                 maxWidth={["300px", "100%"]}
                 justifyContent={"center"}
                 marginTop={"32px"}
               >
-                <Text mb="8px" color="#424242">
+                <label mb="8px" color="#424242">
                   Nome:
-                </Text>
-                <Input
+                </label>
+                <input
                   name="Nome"
                   type="text"
                   placeholder="Nome"
@@ -116,8 +117,8 @@ function Signup() {
                   {...register("name")}
                 />
                 {errors.name && <span>{errors.name.message}</span>}
-                <Text mb="8px">E-mail:</Text>
-                <Input
+                <label mb="8px">E-mail:</label>
+                <input
                   name="email"
                   type="text"
                   placeholder="E-mail"
@@ -125,8 +126,8 @@ function Signup() {
                   {...register("email")}
                 />
                 {errors.email && <span>{errors.email.message}</span>}
-                <Text mb="8px">Nome de usuário:</Text>
-                <Input
+                <label mb="8px">Nome de usuário:</label>
+                <input
                   name="username"
                   type="text"
                   placeholder="Ex.: @carlos1234"
@@ -134,8 +135,8 @@ function Signup() {
                   {...register("username")}
                 />
                 {errors.username && <span>{errors.username.message}</span>}
-                <Text mb="8px"> Senha: </Text>
-                <Input
+                <label mb="8px"> Senha: </label>
+                <input
                   name="password"
                   type="password"
                   placeholder="Senha"
@@ -166,11 +167,12 @@ function Signup() {
                       );
                     }}
                   >
-                    {"Entrar "}
+                    {" "}
+                    Entrar
                   </Button>
                 )}
               </Stack>
-            </Flex>
+            </form>
             <Heading
               fontSize={"16px"}
               fontStyle={"normal"}
@@ -185,7 +187,8 @@ function Signup() {
                 color="#00ACC1"
                 href="#"
               >
-                {"Faça Login "}
+                {" "}
+                Faça Login
               </Link>
             </Heading>
           </Stack>

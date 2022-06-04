@@ -5,14 +5,14 @@ import PublicPage from "./routes/PublicPage";
 import ProtectedPage from "./routes/ProtectedPage";
 import Feed from './routes/Feed'
 import Signup from './routes/Signup'
-import PageMenu from "./routes/Menu";
+import PageMenu from "./components/Menu";
 
 function App() {
   return (
     <AuthProvider>
       <Routes>
 
-          {/* <Route path="/" element={<PublicPage/>}/> */}
+          <Route path="/" element={<PublicPage/>}/> 
           <Route path="/login" element={<Login/>}/>
           <Route path="/signup" element={<Signup/>}/>
           <Route path="/Menu" element={<PageMenu/>}/>
