@@ -1,4 +1,5 @@
-import client from "../providers/client";
+import client from "../providers/client.js";
+
 
 export const login = (data) => client.post('/login', data);
 

@@ -5,8 +5,8 @@ import symbol from '../images/symbol.png'
 import patasblue from '../images/petsblue.png'
 import { Link as ReachLink } from "react-router-dom"
 import React from 'react'
-import {useForm} from 'react-hook-form'
-import {signup} from '../services/auth.js';
+import {useForm,} from 'react-hook-form'
+import {signup} from '../services/auth';
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
@@ -15,8 +15,7 @@ const schema = yup.object({
    name:yup.string().required("Nome obrigatório"),
    email: yup.string().email().required("Email obrigatório"),
    username:yup.string().required("Usarname é obrigatorio"),
-   password: yup.string().min(5,"Senha obrigatório").required("Senha Inválida"),
-  }).required();
+   password: yup.string().min(5,"Senha obrigatório").required("Senha Inválida"),}).required();
 
 
 function Signup () {
@@ -32,17 +31,17 @@ function Signup () {
          setError, 
          formState: { errors },
          } = useForm ({resolver:yupResolver(schema)});
-     async function onSubmit (data) {
+    const onSubmit =async (data) => {
     console.log(data);
-    console.log('Aqui')
 try {
- await signup(data);
-  // console.log(response);
+  const response = await signup (data);
+  //console.log(response);
 }catch (error){
-  console.log('deu ruin')
   console.log(error)
 }
   };
+  console.log(errors);
+
   return (
 <Flex display={'flex'} direction={['column', 'row']} >
      <Flex align={'center'} justify='center'>
@@ -79,34 +78,34 @@ try {
                     fontWeight={'600'} 
                     marginTop={'32px'}> Cadastro 
          </Heading>
-         <form as="form" mt="20px" onSubmit={handleSubmit(onSubmit)}>
+         <Flex as="form" mt="20px" onSubmit={handleSubmit(onSubmit)}>
          <Stack maxWidth={['300px','100%']}  justifyContent={'center'} marginTop={'32px'}>  
-         <label mb='8px'color='#424242'>Nome:</label>
-         <input 
+         <Text mb='8px'color='#424242'>Nome:</Text>
+         <Input 
          name="Nome" 
          type="text" 
          placeholder="Nome" 
          focusBorderColor='#00ACC1'
          {...register("name")}/>
          {errors.name && <span>{errors.name.message}</span>}
-    <label mb='8px'>E-mail:</label>
-          <input 
+    <Text mb='8px'>E-mail:</Text>
+          <Input 
           name="email" 
           type="text" 
           placeholder="E-mail" 
           focusBorderColor='#00ACC1' 
           {...register("email")}/>
           {errors.email && <span>{errors.email.message}</span>}
-    <label mb='8px'>Nome de usuário:</label>
-         <input 
+    <Text mb='8px'>Nome de usuário:</Text>
+         <Input 
          name="username" 
          type="text" 
          placeholder="Ex.: @carlos1234"
          focusBorderColor='#00ACC1'
          {...register("username")}/>
         {errors.username && <span>{errors.username.message}</span>}
-    <label mb='8px'> Senha: </label>
-         <input 
+    <Text mb='8px'> Senha: </Text>
+         <Input 
           name="password" 
           type="password"
           placeholder="Senha" 
@@ -126,14 +125,14 @@ try {
                            color={'#FFFFFF'} 
                            variant={'solid'}
                            border-radius= {'4px'} 
-                           fontFamily= {'Open Sans'} onClick={() =>{
-                           setError("name","email", "password","username" ,{ type: "focus" }, {setIsModalOpen: true });
-                             }} 
+                          //  fontFamily= {'Open Sans'} onClick={() =>{
+                          // setError("name","email", "password","username" ,{ type: "focus" }, {setIsModalOpen: true });
+                          //   }} 
                           > Entrar
                           </Button>
                         )}
                        </Stack>
-                    </form>
+                    </Flex>
              <Heading fontSize={'16px'} fontStyle={'normal'} fontFamily= {'Open Sans'} fontWeight={'400'}>
                          Já Possui Cadastro? 
              <Link as={ReachLink} to= "/" Color={'#00ACC1'}color='#00ACC1' href='#'> Faça Login</Link> 
