@@ -13,11 +13,15 @@ import {
   useColorMode,
   useColorModeValue,
   Button,
+  Wrap,
+  WrapItem,
+  Center,
 } from "@chakra-ui/react";
 import { FiMenu, FiUser, FiHome, FiLogOut } from "react-icons/fi";
 import patasblue from "../images/petsblue.png";
 import DogAvatar from "../images/Avatar.png";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import Feed from "../routes/Feed";
 
 const LinkItems = [
   { name: "Home", Icon: FiHome },
@@ -25,10 +29,10 @@ const LinkItems = [
   { name: "Sair", Icon: FiLogOut },
 ];
 
-export default function SimpleSidebar({ children }) {
+export default function Sidebar({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
+    <Box minH="100vh" bg={useColorModeValue("#FFFFFF")}>
       <SidebarContent
         onClose={() => onClose}
         display={{ base: "none", md: "block" }}
@@ -50,6 +54,14 @@ export default function SimpleSidebar({ children }) {
       <MobileNav display={{ base: "flex", md: "none" }} onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p="4">
         {children}
+        <Feed />
+        <Wrap>
+          <WrapItem>
+            <Center w="180px" h="80px" bg="tomato">
+              Box 3
+            </Center>
+          </WrapItem>
+        </Wrap>
       </Box>
     </Box>
   );

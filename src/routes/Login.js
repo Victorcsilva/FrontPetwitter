@@ -21,13 +21,16 @@ function Login() {
   const navigate = useNavigate();
   const location = useLocation();
   const { signin } = useAuth();
+
   const from = location.state?.from?.pathname || "/";
 
   async function handleSubmit(event) {
     event.preventDefault();
+
     const formData = new FormData(event.currentTarget);
     const email = formData.get("email");
     const password = formData.get("password");
+
     await signin({ email, password });
     navigate(from, { replace: true });
   }
@@ -65,10 +68,11 @@ function Login() {
           <Text mb="8px"> Senha: </Text>
           <InputGroup size="md">
             <Input
+              name="password"
               focusBorderColor="#00ACC1"
               pr="4.5rem"
               type={show ? "text" : "password"}
-              placeholder="Enter password"
+              placeholder="senha"
             />
             <InputRightElement width="4.5rem">
               <Button h="1.75rem" size="sm" onClick={handleClick}>
