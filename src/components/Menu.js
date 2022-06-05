@@ -3,16 +3,27 @@ import {
   Box,
   CloseButton,
   Flex,
-  useColorModeValue,
   Drawer,
   DrawerContent,
   Text,
   useDisclosure,
   Image,
+  Link,
+  Icon,
+  useColorMode,
+  useColorModeValue,
+  Button,
 } from "@chakra-ui/react";
-import { FiMenu } from "react-icons/fi";
+import { FiMenu, FiUser, FiHome, FiLogOut } from "react-icons/fi";
 import patasblue from "../images/petsblue.png";
 import DogAvatar from "../images/Avatar.png";
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+
+const LinkItems = [
+  { name: "Home", Icon: FiHome },
+  { name: "Meu perfil", Icon: FiUser },
+  { name: "Sair", Icon: FiLogOut },
+];
 
 export default function SimpleSidebar({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -45,6 +56,7 @@ export default function SimpleSidebar({ children }) {
 }
 
 const SidebarContent = ({ onClose, ...rest }) => {
+  const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Box
       bg={useColorModeValue("white", "gray.900")}
@@ -55,32 +67,99 @@ const SidebarContent = ({ onClose, ...rest }) => {
       h="full"
       {...rest}
     >
-      <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
+      <Flex
+        h="20"
+        alignItems="center"
+        mx="8"
+        justifyContent="center"
+        display={"flex"}
+      >
         <Image src={DogAvatar} display="flex" w={["56px", "0%"]} />
         <Image src={patasblue} display="flex" w={["0%", "29px"]} />
+        <Text
+          fontSize={["0%", "27px"]}
+          color={"#00ACC1"}
+          fontFamily={"Roboto"}
+          fontWeight={"700"}
+          marginLeft={"11px"}
+        >
+          {"PETWITTER"}
+        </Text>
+
         <Text
           fontSize={["21px", "0%"]}
           color={"#00ACC1"}
           fontFamily={"Roboto"}
           fontWeight={"700"}
           marginLeft={"21px"}
-        >
-          {" "}
-          PETWITTER
-        </Text>
-        <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
+        ></Text>
+        <CloseButton
+          display={{ base: "flex", md: "none" }}
+          justifyContent="flex-end"
+          onClick={onClose}
+        />
       </Flex>
+      {LinkItems.map((link) => (
+        <NavItem key={link.name} icon={link.icon}>
+          {link.name}
+        </NavItem>
+      ))}
+      <Button onClick={toggleColorMode} bg="transparent">
+        {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+      </Button>
     </Box>
   );
 };
 
+const NavItem = ({ icon, children, ...rest }) => {
+  return (
+    <Link
+      href={children}
+      style={{ textDecoration: "none" }}
+      _focus={{ boxShadow: "none" }}
+      rounded={"md"}
+      _hover={{
+        textDecoration: "none",
+        bg: useColorModeValue("gray.200", "gray.700"),
+      }}
+    >
+      <Flex
+        justifyContent="center"
+        align="center"
+        p="4            "
+        mx="4"
+        borderRadius="lg"
+        role="group"
+        cursor="pointer"
+        _hover={{
+          bg: "cyan.400",
+          color: "#00ACC1",
+          borderStart: "#00ACC1",
+        }}
+        {...rest}
+      >
+        {" "}
+        {icon && (
+          <Icon
+            mr="4"
+            fontSize="16"
+            _groupHover={{
+              color: "white",
+            }}
+            as={icon}
+          />
+        )}
+        {children}
+      </Flex>
+    </Link>
+  );
+};
 const MobileNav = ({ onOpen, ...rest }) => {
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
       px={{ base: 4, md: 4 }}
       height="10"
-      width="360px"
       alignItems="center"
       bg={useColorModeValue("white", "gray.900")}
       borderBottomWidth="1px"

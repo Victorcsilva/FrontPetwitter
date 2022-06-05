@@ -47,8 +47,7 @@ function Login() {
         fontWeight={"600"}
         marginTop={"32px"}
       >
-        {" "}
-        Login{" "}
+        {"Login"}
       </Heading>
       <Flex as="form" mt="20px" onSubmit={handleSubmit}>
         <Stack
