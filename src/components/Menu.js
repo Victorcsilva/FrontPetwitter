@@ -16,18 +16,19 @@ import {
   Wrap,
   WrapItem,
   Center,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalCloseButton,
+  ModalBody,
 } from "@chakra-ui/react";
 import { FiMenu, FiUser, FiHome, FiLogOut } from "react-icons/fi";
 import patasblue from "../images/petsblue.png";
 import DogAvatar from "../images/Avatar.png";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
-import Feed from "../routes/Feed";
-
-const LinkItems = [
-  { name: "Home", Icon: FiHome },
-  { name: "Meu perfil", Icon: FiUser },
-  { name: "Sair", Icon: FiLogOut },
-];
+import Feed from "./Feed";
 
 export default function Sidebar({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -69,6 +70,8 @@ export default function Sidebar({ children }) {
 
 const SidebarContent = ({ onClose, ...rest }) => {
   const { colorMode, toggleColorMode } = useColorMode();
+  const { isOpen, onOpen, onCloseModal } = useDisclosure();
+
   return (
     <Box
       bg={useColorModeValue("white", "gray.900")}
@@ -111,11 +114,28 @@ const SidebarContent = ({ onClose, ...rest }) => {
           onClick={onClose}
         />
       </Flex>
-      {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon}>
-          {link.name}
-        </NavItem>
-      ))}
+      <NavItem />
+      <Button onClick={onOpen}>Open Modal</Button>
+
+      <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Sair desta conta?</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Text fontWeight="bold" mb="1rem">
+              Deseja realmente sair desta conta ?
+            </Text>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              Sair
+            </Button>
+            <Button variant="ghost">Cancelar</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
       <Button onClick={toggleColorMode} bg="transparent">
         {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
       </Button>
@@ -126,7 +146,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
 const NavItem = ({ icon, children, ...rest }) => {
   return (
     <Link
-      href={children}
+      href="/SAIR"
       style={{ textDecoration: "none" }}
       _focus={{ boxShadow: "none" }}
       rounded={"md"}
@@ -148,9 +168,8 @@ const NavItem = ({ icon, children, ...rest }) => {
           color: "#00ACC1",
           borderStart: "#00ACC1",
         }}
-        {...rest}
       >
-        {" "}
+        {"Sair "}
         {icon && (
           <Icon
             mr="4"
@@ -161,7 +180,6 @@ const NavItem = ({ icon, children, ...rest }) => {
             as={icon}
           />
         )}
-        {children}
       </Flex>
     </Link>
   );

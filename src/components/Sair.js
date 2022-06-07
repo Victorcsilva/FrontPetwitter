@@ -4,7 +4,6 @@ import {
   ModalContent,
   ModalHeader,
   ModalFooter,
-  ModalBody,
   ModalCloseButton,
   Button,
   useDisclosure,
@@ -25,12 +24,11 @@ function ModalSair() {
         <ModalContent>
           <ModalHeader>Modal Title</ModalHeader>
           <ModalCloseButton />
-          <ModalBody></ModalBody>
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
+            <Button colorScheme="Cyan 400" mr={3} onClick={onClose}>
+              Cancelar
             </Button>
-            <Button variant="ghost">Secondary Action</Button>
+            <Button variant="ghost">Sair</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

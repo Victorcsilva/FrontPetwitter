@@ -1,10 +1,13 @@
 import { Container, Wrap, WrapItem, Center } from "@chakra-ui/react";
 import Menu from "../components/Menu";
-import Feed from "./Feed";
+import Feed from "../components/Feed";
+import { Outlet } from "react-router-dom";
+import AuthStatus from "../components/AuthStatus";
 
 function Layout() {
   return (
     <Container bg="blue.600" centerContent>
+      <AuthStatus />
       <Wrap>
         <Menu />
         <WrapItem>
@@ -18,6 +21,7 @@ function Layout() {
           </Center>
         </WrapItem>
       </Wrap>
+      <Outlet />
     </Container>
   );
 }

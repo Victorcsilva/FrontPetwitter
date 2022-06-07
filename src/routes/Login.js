@@ -1,112 +1,75 @@
-import { useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/auth-context";
-import {
-  Heading,
-  Stack,
-  Link,
-  Button,
-  Input,
-  Flex,
-  Text,
-  InputGroup,
-  InputRightElement,
-} from "@chakra-ui/react";
-import { Link as ReachLink } from "react-router-dom";
-import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import React from "react";
+import { Flex, Stack, Image, Text } from "@chakra-ui/react";
+import dogimage from "../images/dog1.png";
+import LoginForm from "../components/LoginForm";
+import patas from "../images/pets.png";
+import symbol from "../images/symbol.png";
+import patasblue from "../images/petsblue.png";
 
-function Login() {
-  const [show, setShow] = React.useState(false);
-  const handleClick = () => setShow(!show);
-  const navigate = useNavigate();
-  const location = useLocation();
-  const { signin } = useAuth();
-
-  const from = location.state?.from?.pathname || "/";
-
-  async function handleSubmit(event) {
-    event.preventDefault();
-
-    const formData = new FormData(event.currentTarget);
-    const email = formData.get("email");
-    const password = formData.get("password");
-
-    await signin({ email, password });
-    navigate(from, { replace: true });
-  }
-
+function HomePublic() {
   return (
-    <Stack justifyContent={"center"} marginLeft={"32px"}>
-      <Heading
-        fontSize={["0%", "36px"]}
-        color={"#00ACC1"}
-        fontFamily={"Open Sans"}
-      >
-        Comece agora.<p>Conecte-se já.</p>
-      </Heading>
-      <Heading
-        fontSize={"24px"}
-        fontFamily={"Open Sans"}
-        fontWeight={"600"}
-        marginTop={"32px"}
-      >
-        {"Login"}
-      </Heading>
-      <Flex as="form" mt="20px" onSubmit={handleSubmit}>
-        <Stack
-          maxWidth={["300px", "100%"]}
-          justifyContent={"center"}
-          marginTop={"32px"}
-        >
-          <Text mb="8px">E-mail:</Text>
-          <Input
-            name="email"
-            type="text"
-            placeholder="E-mail"
-            focusBorderColor="#00ACC1"
+    <Flex display={"flex"} direction={["column", "row"]}>
+      <Flex align={"center"} justify="center">
+        <Flex>
+          <Image
+            src={dogimage}
+            display="block"
+            w={["100%", "767px"]}
+            h={["100%", "720px"]}
           />
-          <Text mb="8px"> Senha: </Text>
-          <InputGroup size="md">
-            <Input
-              name="password"
-              focusBorderColor="#00ACC1"
-              pr="4.5rem"
-              type={show ? "text" : "password"}
-              placeholder="senha"
-            />
-            <InputRightElement width="4.5rem">
-              <Button h="1.75rem" size="sm" onClick={handleClick}>
-                {show ? <ViewIcon /> : <ViewOffIcon />}
-              </Button>
-            </InputRightElement>
-          </InputGroup>
-          <Button
-            type="submit"
-            w={["296px", "368px"]}
-            colorScheme={"#00ACC1"}
-            bgColor={"#00ACC1"}
+          <Image
+            src={patas}
+            display="flex"
+            left={[37, 179]}
+            top={[67, 354]}
+            position={"absolute"}
+            w={["72px", "77px"]}
+          />
+          <Text
+            fontSize={["0%", "51.5px"]}
             color={"#FFFFFF"}
-            variant={"solid"}
-            border-radius={"4px"}
-            fontFamily={"Open Sans"}
+            fontFamily={"Roboto"}
+            fontWeight={"700"}
+            left={289}
+            top={[67, 354]}
+            position={"absolute"}
           >
-            {"Entrar "}
-          </Button>
+            {" "}
+            PETWITTER
+          </Text>
+          <Text
+            fontSize={["36px", "0%"]}
+            color={"#FFFFFF"}
+            fontFamily={"Open Sans"}
+            fontStyle={"normal"}
+            fontWeight={"700"}
+            left={26}
+            top={139.12}
+            position={"absolute"}
+          >
+            Comece agora.<p>Conecte-se já.</p>
+          </Text>
+        </Flex>
+      </Flex>
+      <Flex justifyContent={"center"} align={"center"} marginLeft={"32px"}>
+        <Stack spacing={4} w={"full"}>
+          <Image src={symbol} w={["0%", "76px"]} />
+          <LoginForm />
         </Stack>
       </Flex>
-      <Heading
-        fontSize={"16px"}
-        fontStyle={"normal"}
-        fontFamily={"Open Sans"}
-        fontWeight={"400"}
-      >
-        {"Ainda não possui uma conta? "}
-        <Link as={ReachLink} to="/signup" color="#00ACC1" href="#">
-          {" Cadastrar-se "}
-        </Link>
-      </Heading>
-    </Stack>
+      <Flex display={"flex"} justifyContent="center" marginTop={"50px"}>
+        <Image src={patasblue} display="flex" w={["29px", "0%"]} />
+        <Text
+          fontSize={["21px", "0%"]}
+          color={"#00ACC1"}
+          fontFamily={"Roboto"}
+          fontWeight={"700"}
+          marginLeft={"21px"}
+        >
+          {" "}
+          PETWITTER
+        </Text>
+      </Flex>
+    </Flex>
   );
 }
-
-export default Login;
+export default HomePublic;
