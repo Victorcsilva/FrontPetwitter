@@ -1,18 +1,16 @@
 import { Container, Wrap, WrapItem, Center } from "@chakra-ui/react";
-import Menu from "../components/Menu";
-import Feed from "../components/Feed";
-import { Outlet } from "react-router-dom";
-import AuthStatus from "../components/AuthStatus";
+// import Menu from "../components/Menu";
+// import PostForm from "../components/PostForm";
+// import { Outlet } from "react-router-dom";
+// import AuthStatus from "../components/AuthStatus";
 
-function Layout() {
+function Home() {
   return (
     <Container bg="blue.600" centerContent>
-      <AuthStatus />
       <Wrap>
-        <Menu />
         <WrapItem>
           <Center w="180px" h="80px" bg="green.200">
-            <Feed />
+            {/* <PostForm /> */}
           </Center>
         </WrapItem>
         <WrapItem>
@@ -21,9 +19,8 @@ function Layout() {
           </Center>
         </WrapItem>
       </Wrap>
-      <Outlet />
     </Container>
   );
 }
 
-export default Layout;
+export default Home;

@@ -8,5 +8,3 @@ export const setInStorage = (key, data) =>
   localStorage.setItem(key, JSON.stringify(data));
 
 export const signup = (data) => client.post("/signup", data);
-
-export const posts = (data) => client.post("/posts", data);

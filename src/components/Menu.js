@@ -13,27 +13,33 @@ import {
   useColorMode,
   useColorModeValue,
   Button,
-  Wrap,
-  WrapItem,
-  Center,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalCloseButton,
-  ModalBody,
+  // Wrap,
+  // WrapItem,
+  // Center,
+  // Modal,
+  // ModalOverlay,
+  // ModalContent,
+  // ModalHeader,
+  // ModalFooter,
+  // ModalCloseButton,
+  // ModalBody,
 } from "@chakra-ui/react";
 import { FiMenu, FiUser, FiHome, FiLogOut } from "react-icons/fi";
 import patasblue from "../images/petsblue.png";
 import DogAvatar from "../images/Avatar.png";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
-import Feed from "./Feed";
+// import PostForm from "./PostForm";
+
+const LinkItems = [
+  { name: "Home", icon: FiHome },
+  { name: "Perfil", icon: FiUser },
+  { name: "Sair", icon: FiLogOut },
+];
 
 export default function Sidebar({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box minH="100vh" bg={useColorModeValue("#FFFFFF")}>
+    <>
       <SidebarContent
         onClose={() => onClose}
         display={{ base: "none", md: "block" }}
@@ -53,24 +59,17 @@ export default function Sidebar({ children }) {
       </Drawer>
 
       <MobileNav display={{ base: "flex", md: "none" }} onOpen={onOpen} />
-      <Box ml={{ base: 0, md: 60 }} p="4">
+      {/* <Box ml={{ base: 0, md: 60 }} p="4">
         {children}
-        <Feed />
-        <Wrap>
-          <WrapItem>
-            <Center w="180px" h="80px" bg="tomato">
-              Box 3
-            </Center>
-          </WrapItem>
-        </Wrap>
-      </Box>
-    </Box>
+        <PostForm />
+      </Box> */}
+    </>
   );
 }
 
 const SidebarContent = ({ onClose, ...rest }) => {
   const { colorMode, toggleColorMode } = useColorMode();
-  const { isOpen, onOpen, onCloseModal } = useDisclosure();
+  // const { isOpen, onOpen, onCloseModal } = useDisclosure();
 
   return (
     <Box
@@ -114,28 +113,11 @@ const SidebarContent = ({ onClose, ...rest }) => {
           onClick={onClose}
         />
       </Flex>
-      <NavItem />
-      <Button onClick={onOpen}>Open Modal</Button>
-
-      <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Sair desta conta?</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Text fontWeight="bold" mb="1rem">
-              Deseja realmente sair desta conta ?
-            </Text>
-          </ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Sair
-            </Button>
-            <Button variant="ghost">Cancelar</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+      {LinkItems.map((link) => (
+        <NavItem key={link.name} icon={link.icon}>
+          {link.name}
+        </NavItem>
+      ))}
       <Button onClick={toggleColorMode} bg="transparent">
         {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
       </Button>
@@ -146,30 +128,24 @@ const SidebarContent = ({ onClose, ...rest }) => {
 const NavItem = ({ icon, children, ...rest }) => {
   return (
     <Link
-      href="/SAIR"
+      href="#"
       style={{ textDecoration: "none" }}
       _focus={{ boxShadow: "none" }}
-      rounded={"md"}
-      _hover={{
-        textDecoration: "none",
-        bg: useColorModeValue("gray.200", "gray.700"),
-      }}
     >
       <Flex
-        justifyContent="center"
+        justifyContent={"center"}
         align="center"
-        p="4            "
+        p="4"
         mx="4"
         borderRadius="lg"
         role="group"
         cursor="pointer"
         _hover={{
           bg: "cyan.400",
-          color: "#00ACC1",
-          borderStart: "#00ACC1",
+          color: "white",
         }}
+        {...rest}
       >
-        {"Sair "}
         {icon && (
           <Icon
             mr="4"
@@ -180,10 +156,12 @@ const NavItem = ({ icon, children, ...rest }) => {
             as={icon}
           />
         )}
+        {children}
       </Flex>
     </Link>
   );
 };
+
 const MobileNav = ({ onOpen, ...rest }) => {
   return (
     <Flex
