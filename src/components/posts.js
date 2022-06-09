@@ -1,26 +1,25 @@
-import { Textarea, Box, Avatar } from "@chakra-ui/react";
-import { posts } from "../services/auth";
+import { postsget } from "../services/auth_posts";
 import React from "react";
 
-function textarea() {
-    const handleSubmit = async (event) ={
-        try{event.preventDefault()}
+function postsfeed() {
+    const handleSubmit = async (event) =>{
+    try{ event.preventDefault();
+        const formData = new FormData(event.target)
+        const name =formData.get("name")
+        const username =formData.get("username")
+        const posts =formData.get("posts")
+const data={
+    name,
+    username,
+    posts
     }
-  return (
-    <Box color="black" w={{ base: "full", md: 664 }}>
+    
+    console.log(data);
+    await postsget(data)
+} catch (error){
+    console.log(error.message)
 
-      <Textarea
-        placeholder="O que está acontecendo?"
-        Avatar="https://bit.ly/dan-abramov"
-      >
-        <Avatar
-          size="2xs"
-          name="Dan Abrahmov"
-          src="https://bit.ly/dan-abramov"
-        />
-      </Textarea>
-    </Box>
-  );
+
+
+    
 }
-
-export default textarea;

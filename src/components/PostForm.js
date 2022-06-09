@@ -13,7 +13,11 @@ const schema = yup
 
 function PostForm() {
   const [count, setCount] = useState(0),
-    onTextChange = useCallback((evt) => setCount(evt.target.value.length), []);
+    onTextChange = useCallback(
+      (event) => setCount(event.target.value.length),
+      []
+    );
+
   const {
     register,
     handleSubmit,
@@ -21,10 +25,14 @@ function PostForm() {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
+  const [send, setSend] = useState(false);
   const onSubmit = async (data) => {
     console.log(data);
+
     try {
+      setSend(true);
       const response = await posts(data);
+      setSend(false);
       console.log(response);
       reset();
     } catch (error) {
@@ -33,18 +41,33 @@ function PostForm() {
   };
 
   return (
-    <Box color="black" w={{ base: "full", md: 664 }}>
+    <Box color="black" w={{ base: "full", md: 164 }}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Textarea
           placeholder="O que está acontecendo?"
           onChange={onTextChange}
-          {...register("published")}
+          {...register("content")}
         />
-        <div>{count}/400</div>
-
-        {errors.published && <span>{errors.published.message}</span>}
+        <div>{count}/140</div>
+        {errors.published && <span>{errors.content.message}</span>}
         {/* <div>{count}/140</div> */}
-        <button type="submit">Petwittar</button>
+        <button
+          type="submit"
+          border={"5"}
+          justifyContent={"center"}
+          align="center"
+          role="group"
+          p="4"
+          mx="2"
+          cursor="pointer"
+          isLoading={send}
+          _hover={{
+            bg: "#00ACC1",
+            color: "white",
+          }}
+        >
+          Petwittar
+        </button>
       </form>
     </Box>
   );

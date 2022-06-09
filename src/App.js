@@ -4,7 +4,6 @@ import Login from "./routes/Login";
 import Signup from "./routes/Signup";
 import Menu from "./components/Menu";
 import Perfil from "./routes/Perfil";
-import Sair from "./components/Sair";
 import Home from "./routes/Home";
 import PostForm from "./components/PostForm";
 
@@ -40,14 +39,6 @@ function App() {
             element={
               <RequireAuth>
                 <Perfil />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path="/Sair"
-            element={
-              <RequireAuth>
-                - <Sair />
               </RequireAuth>
             }
           />

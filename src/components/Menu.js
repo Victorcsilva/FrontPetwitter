@@ -13,33 +13,26 @@ import {
   useColorMode,
   useColorModeValue,
   Button,
-  // Wrap,
-  // WrapItem,
-  // Center,
-  // Modal,
-  // ModalOverlay,
-  // ModalContent,
-  // ModalHeader,
-  // ModalFooter,
-  // ModalCloseButton,
-  // ModalBody,
+  Stack,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
 } from "@chakra-ui/react";
 import { FiMenu, FiUser, FiHome, FiLogOut } from "react-icons/fi";
 import patasblue from "../images/petsblue.png";
 import DogAvatar from "../images/Avatar.png";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
-// import PostForm from "./PostForm";
+import PostForm from "./PostForm";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/auth-context";
 
-const LinkItems = [
-  { name: "Home", icon: FiHome },
-  { name: "Perfil", icon: FiUser },
-  { name: "Sair", icon: FiLogOut },
-];
-
-export default function Sidebar({ children }) {
+export default function Sidebar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <>
+    <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
       <SidebarContent
         onClose={() => onClose}
         display={{ base: "none", md: "block" }}
@@ -59,18 +52,14 @@ export default function Sidebar({ children }) {
       </Drawer>
 
       <MobileNav display={{ base: "flex", md: "none" }} onOpen={onOpen} />
-      {/* <Box ml={{ base: 0, md: 60 }} p="4">
-        {children}
+      <Box ml={{ base: 0, md: 60 }} p="4">
         <PostForm />
-      </Box> */}
-    </>
+      </Box>
+    </Box>
   );
 }
 
 const SidebarContent = ({ onClose, ...rest }) => {
-  const { colorMode, toggleColorMode } = useColorMode();
-  // const { isOpen, onOpen, onCloseModal } = useDisclosure();
-
   return (
     <Box
       bg={useColorModeValue("white", "gray.900")}
@@ -113,52 +102,135 @@ const SidebarContent = ({ onClose, ...rest }) => {
           onClick={onClose}
         />
       </Flex>
-      {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon}>
-          {link.name}
-        </NavItem>
-      ))}
-      <Button onClick={toggleColorMode} bg="transparent">
-        {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
-      </Button>
+      <NavItem />
     </Box>
   );
 };
 
-const NavItem = ({ icon, children, ...rest }) => {
+const NavItem = () => {
+  const { colorMode, toggleColorMode } = useColorMode();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  let auth = useAuth();
+  let navigate = useNavigate();
+
   return (
-    <Link
-      href="#"
-      style={{ textDecoration: "none" }}
-      _focus={{ boxShadow: "none" }}
-    >
-      <Flex
+    <Stack direction="column" spacing={4}>
+      <Link
+        href="/home"
+        border={"0"}
         justifyContent={"center"}
         align="center"
-        p="4"
-        mx="4"
-        borderRadius="lg"
         role="group"
+        p="4"
+        mx="2"
         cursor="pointer"
         _hover={{
-          bg: "cyan.400",
+          bg: "#00ACC1",
           color: "white",
         }}
-        {...rest}
       >
-        {icon && (
-          <Icon
-            mr="4"
-            fontSize="16"
-            _groupHover={{
-              color: "white",
-            }}
-            as={icon}
-          />
-        )}
-        {children}
-      </Flex>
-    </Link>
+        <Icon
+          mr="4"
+          fontSize="16"
+          _groupHover={{
+            color: "white",
+          }}
+          as={FiHome}
+        />
+        Home
+      </Link>
+      <Link
+        href="/home"
+        border={"0"}
+        justifyContent={"center"}
+        align="center"
+        role="group"
+        p="4"
+        mx="2"
+        cursor="pointer"
+        _hover={{
+          bg: "#00ACC1",
+          color: "white",
+        }}
+      >
+        <Icon
+          mr="4"
+          fontSize="16"
+          _groupHover={{
+            color: "white",
+          }}
+          as={FiUser}
+        />
+        Perfil
+      </Link>
+      <Link
+        onClick={onOpen}
+        border={"0"}
+        justifyContent={"center"}
+        align="center"
+        role="group"
+        p="4"
+        mx="2"
+        cursor="pointer"
+        _hover={{
+          bg: "#00ACC1",
+          color: "white",
+        }}
+      >
+        <Icon
+          mr="4"
+          fontSize="16"
+          color="#00ACC1"
+          _groupHover={{
+            color: "white",
+          }}
+          as={FiLogOut}
+        />
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Sair desta conta?</ModalHeader>
+            <ModalBody>Deseja realmente sair desta conta?</ModalBody>
+            <ModalFooter>
+              <Button
+                variant="ghost"
+                mr={3}
+                color="#00ACC1"
+                _hover={{
+                  bg: "#00ACC1",
+                  color: "white",
+                }}
+                onClick={() => {
+                  auth.signout(() => navigate("/login"));
+                }}
+              >
+                Sair
+              </Button>
+              <Button
+                border={"0"}
+                justifyContent={"center"}
+                align="center"
+                role="group"
+                p="4"
+                mx="2"
+                color="#00ACC1"
+                _hover={{
+                  bg: "#00ACC1",
+                  color: "white",
+                }}
+                onClick={onClose}
+              >
+                Cancelar
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+        Sair
+      </Link>
+      <Button onClick={toggleColorMode} bg="transparent">
+        {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+      </Button>
+    </Stack>
   );
 };
 

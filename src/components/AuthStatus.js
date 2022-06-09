@@ -8,7 +8,6 @@ function AuthStatus() {
   if (!auth.user) {
     return <p>voce nao esta logado</p>;
   }
-
   return (
     <p>
       Bem vindo(a) {auth.user?.name}!{" "}
