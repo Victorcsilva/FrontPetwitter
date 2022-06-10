@@ -5,6 +5,8 @@ export const posts = (data) => {
   client.post("/posts", data);
 };
 
-export const postsget = (data) => {
-  client.get("/posts", data);
+export const allposts = (id) => client.get(`/posts`);
+
+export const userposts = () => {
+  client.get(`./users`);
 };

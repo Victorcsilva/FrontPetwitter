@@ -1,4 +1,4 @@
-import { Box, Textarea } from "@chakra-ui/react";
+import { Box, Textarea, Button, Flex } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { posts } from "../services/auth_posts";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -41,33 +41,43 @@ function PostForm() {
   };
 
   return (
-    <Box color="black" w={{ base: "full", md: 164 }}>
+    <Box
+      display="flex"
+      color="black"
+      w={{ base: "full", md: 164 }}
+      alignItems={"end"}
+    >
       <form onSubmit={handleSubmit(onSubmit)}>
         <Textarea
+          width="620px"
           placeholder="O que está acontecendo?"
           onChange={onTextChange}
           {...register("content")}
         />
-        <div>{count}/140</div>
-        {errors.published && <span>{errors.content.message}</span>}
-        {/* <div>{count}/140</div> */}
-        <button
-          type="submit"
-          border={"5"}
-          justifyContent={"center"}
-          align="center"
-          role="group"
-          p="4"
-          mx="2"
-          cursor="pointer"
-          isLoading={send}
-          _hover={{
-            bg: "#00ACC1",
-            color: "white",
-          }}
-        >
-          Petwittar
-        </button>
+        <Flex justifyContent={"end"}>
+          {count}/140
+          {errors.published && <span>{errors.content.message}</span>}
+          <Button
+            type="submit"
+            bg="#00ACC1"
+            color={"#FFFFFF"}
+            opacity={0.4}
+            border={"5"}
+            justifyContent={"center"}
+            align="center"
+            role="group"
+            p="4"
+            mx="2"
+            cursor="pointer"
+            isLoading={send}
+            _hover={{
+              bg: "#00ACC1",
+              color: "white",
+            }}
+          >
+            Petwittar
+          </Button>
+        </Flex>
       </form>
     </Box>
   );

@@ -1,10 +1,14 @@
 const Posts = (props) => {
   const { name, username, posts } = props;
   return (
-    <div className={"posts"}>
-      <p>{name}</p>
-      <p>{username}</p>
-      <p>{posts}</p>
+    <div>
+      <div className={"user"}>
+        <p>{name}</p>
+        <p>{username}</p>
+      </div>
+      <div className={"content"}>
+        <p>{posts}</p>
+      </div>
     </div>
   );
 };

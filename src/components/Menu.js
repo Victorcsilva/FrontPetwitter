@@ -25,14 +25,18 @@ import { FiMenu, FiUser, FiHome, FiLogOut } from "react-icons/fi";
 import patasblue from "../images/petsblue.png";
 import DogAvatar from "../images/Avatar.png";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
-import PostForm from "./PostForm";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/auth-context";
+import Feed from "./Feed.js";
 
 export default function Sidebar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
+    <Box
+      minH="100vh"
+      bg={useColorModeValue("gray.100", "gray.900")}
+      bgColor="white"
+    >
       <SidebarContent
         onClose={() => onClose}
         display={{ base: "none", md: "block" }}
@@ -52,9 +56,16 @@ export default function Sidebar() {
       </Drawer>
 
       <MobileNav display={{ base: "flex", md: "none" }} onOpen={onOpen} />
-      <Box ml={{ base: 0, md: 60 }} p="4">
-        <PostForm />
+      <Box
+        width="630px"
+        height={"full"}
+        ml={{ base: 0, md: 60 }}
+        p="4"
+        bgColor={"white"}
+      >
+        <Feed />
       </Box>
+      <Box borderBlockEnd={"12px"}></Box>
     </Box>
   );
 }
@@ -111,12 +122,10 @@ const NavItem = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
   let auth = useAuth();
-  let navigate = useNavigate();
-
   return (
     <Stack direction="column" spacing={4}>
       <Link
-        href="/home"
+        href="/"
         border={"0"}
         justifyContent={"center"}
         align="center"
@@ -140,7 +149,7 @@ const NavItem = () => {
         Home
       </Link>
       <Link
-        href="/home"
+        href="/perfil"
         border={"0"}
         justifyContent={"center"}
         align="center"
@@ -201,7 +210,7 @@ const NavItem = () => {
                   color: "white",
                 }}
                 onClick={() => {
-                  auth.signout(() => navigate("/login"));
+                  auth.signout(() => "/login");
                 }}
               >
                 Sair
@@ -228,7 +237,7 @@ const NavItem = () => {
         Sair
       </Link>
       <Button onClick={toggleColorMode} bg="transparent">
-        {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+        {colorMode === "light" ? <MoonIcon color="#00ACC1" /> : <SunIcon />}
       </Button>
     </Stack>
   );
