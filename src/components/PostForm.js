@@ -3,20 +3,19 @@ import { useForm } from "react-hook-form";
 import { posts } from "../services/auth_posts";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 
 const schema = yup
   .object({
-    published: yup.string().max(140),
+    content: yup.string().max(140).required("Texto obrigatorio"),
   })
   .required();
 
 function PostForm() {
-  const [count, setCount] = useState(0),
-    onTextChange = useCallback(
-      (event) => setCount(event.target.value.length),
-      []
-    );
+  const [count, setCount] = useState(0);
+  const onTextChange = (event) => {
+    setCount(event.target.value.length);
+  };
 
   const {
     register,
@@ -27,8 +26,6 @@ function PostForm() {
 
   const [send, setSend] = useState(false);
   const onSubmit = async (data) => {
-    console.log(data);
-
     try {
       setSend(true);
       const response = await posts(data);
@@ -42,21 +39,23 @@ function PostForm() {
 
   return (
     <Box
-      display="flex"
+      display={["none", "flex"]}
       color="black"
-      w={{ base: "full", md: 164 }}
-      alignItems={"end"}
+      justifyContent={"center"}
+      width="100%"
+      maxWidth={"620px"}
+      minWidth={"320px"}
     >
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} onChange={onTextChange}>
         <Textarea
-          width="620px"
+          fontSize={["16px", "24px"]}
           placeholder="O que está acontecendo?"
-          onChange={onTextChange}
+          maxLength={"140"}
           {...register("content")}
         />
         <Flex justifyContent={"end"}>
           {count}/140
-          {errors.published && <span>{errors.content.message}</span>}
+          {errors.content && alert(errors.content.message)}
           <Button
             type="submit"
             bg="#00ACC1"

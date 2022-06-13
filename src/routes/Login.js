@@ -10,12 +10,7 @@ function HomePublic() {
     <Flex display={"flex"} direction={["column", "row"]}>
       <Flex align={"center"} justify="center">
         <Flex>
-          <Image
-            src={dogimage}
-            display="block"
-            w={["100%", "767px"]}
-            h={["100%", "720px"]}
-          />
+          <Image src={dogimage} w={["100%", "767px"]} h={["100%", "720px"]} />
           <Image
             src={patas}
             display="flex"
@@ -33,7 +28,6 @@ function HomePublic() {
             top={[67, 354]}
             position={"absolute"}
           >
-            {" "}
             PETWITTER
           </Text>
           <Text

@@ -23,7 +23,7 @@ function App() {
             }
           />
           <Route
-            path="/prefil"
+            path="/perfil"
             element={
               <RequireAuth>
                 <Perfil />
