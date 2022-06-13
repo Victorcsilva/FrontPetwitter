@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getFromStorage } from "../services/auth";
+import { getFromStorage } from "../services/auth.js";
 
 const apiURL = process.env.REACT_APP_API_URL;
 
