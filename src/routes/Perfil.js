@@ -2,7 +2,7 @@ import { Box, Flex, Text, Image } from "@chakra-ui/react";
 import { allpost, getusers } from "../services/auth_posts";
 import React from "react";
 import { useEffect, useState } from "react";
-import Postcard from "../components/Postscard";
+import Postcard from "../components/postscard";
 import DogAvatar from "../images/Avatar.png";
 import { useAuth } from "../context/auth-context";
 import { useParams } from "react-router-dom";
