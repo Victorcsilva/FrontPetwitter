@@ -1,4 +1,4 @@
-import { Flex, Box, Image, Text } from "@chakra-ui/react";
+import { Flex, Image, Text } from "@chakra-ui/react";
 import DogAvatar from "../images/Avatar.png";
 import { getusers } from "../services/auth_posts";
 import { useEffect, useState } from "react";
@@ -20,30 +20,45 @@ const Posts = (props) => {
     };
     request();
   }, [authorId]);
-  console.log(location);
   return (
-    <Box w="360px">
-      <Flex>
-        <Image src={DogAvatar} display="flex" w={["56px", "56px"]} />
-        <Link to={`${location.pathname === "/" ? "/perfil/" + authorId : "#"}`}>
+    <Flex borderBlockStartWidth="1px">
+      <Image
+        src={DogAvatar}
+        w={["56px", "56px"]}
+        h="full"
+        marginTop="20px"
+        marginLeft="16px"
+      />
+      <Flex flexDirection="column" marginLeft="8px" marginTop="20px">
+        <Flex flexDirection="row" marginLeft="16px">
+          <Link
+            to={`${location.pathname === "/" ? "/perfil/" + authorId : "#"}`}
+          >
+            <Text fontSize={["15px", "15px"]} fontWeight="700">
+              {data?.name ? data?.name : "Carregando..."}
+            </Text>
+          </Link>
           <Text
             as="i"
-            fontSize={"15px"}
-            color={"#000000"}
-            fontFamily={"Roboto"}
-            marginLeft={"21px"}
+            fontSize={["12px", "15px"]}
+            color={"gray.500"}
+            marginLeft="4px"
           >
-            {data?.name ? data?.name : "Carregando..."}
+            {data?.username ? data?.username : "Carregando..."}
           </Text>
-        </Link>
-        <Text as="i">@{data?.username ? data?.username : "Carregando..."}</Text>
 
-        <Text as="i">
-          .{<ReactTimeAgo date={Date.parse(createdAt)} locale="pt-BR" />}
-        </Text>
+          <Text
+            as="i"
+            fontSize={["12px", "15px"]}
+            color={"gray.500"}
+            marginLeft="13px"
+          >
+            .{<ReactTimeAgo date={Date.parse(createdAt)} locale="pt-BR" />}
+          </Text>
+        </Flex>
+        <Text as="i"> {content}</Text>
       </Flex>
-      <Text as="i"> {content}</Text>
-    </Box>
+    </Flex>
   );
 };
 

@@ -9,6 +9,8 @@ import {
   Text,
   Image,
   useOutsideClick,
+  // Alert,
+  // AlertIcon,
 } from "@chakra-ui/react";
 import dogimage from "../images/dog1.png";
 import patas from "../images/pets.png";
@@ -44,13 +46,14 @@ function Signup() {
     register,
     handleSubmit,
     setError,
+    reset,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
   const onSubmit = async (data) => {
-    console.log(data);
     try {
       const response = await signup(data);
-      console.log(response);
+      reset();
+      return response;
     } catch (error) {
       console.log(error);
     }
@@ -60,18 +63,18 @@ function Signup() {
   return (
     <Flex display={"flex"} direction={["column", "row"]}>
       <Flex align={"center"} justify="center">
-        <Flex>
+        <Flex display="block" position="static">
           <Image
             src={dogimage}
-            display="flex"
-            w={["100%", "100%"]}
+            position="static"
+            w={["100%", "768px"]}
             h={["100%", "720px"]}
           />
           <Image
             src={patas}
             left={[37, 179]}
             top={[67, 354]}
-            position={"absolute"}
+            position="absolute"
             w={["72px", "77px"]}
           />
           <Text
@@ -178,13 +181,7 @@ function Signup() {
               fontWeight={"400"}
             >
               Já Possui Cadastro?
-              <Link
-                as={ReachLink}
-                to="/"
-                Color={"#00ACC1"}
-                color="#00ACC1"
-                href="#"
-              >
+              <Link as={ReachLink} to="/" color="#00ACC1" href="#">
                 {"Faça Login "}
               </Link>
             </Heading>
