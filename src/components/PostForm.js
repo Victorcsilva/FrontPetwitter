@@ -38,46 +38,50 @@ function PostForm() {
   };
 
   return (
-    <Box
-      display={["none", "flex"]}
-      color="black"
-      justifyContent={"center"}
-      width="100%"
-      maxWidth={"620px"}
-      minWidth={"320px"}
-    >
-      <form onSubmit={handleSubmit(onSubmit)} onChange={onTextChange}>
-        <Textarea
-          fontSize={["16px", "24px"]}
-          placeholder="O que está acontecendo?"
-          maxLength={"140"}
-          {...register("content")}
-        />
-        <Flex justifyContent={"end"}>
-          {count}/140
-          {errors.content && alert(errors.content.message)}
-          <Button
-            type="submit"
-            bg="#00ACC1"
-            color={"#FFFFFF"}
-            opacity={0.4}
-            border={"5"}
-            justifyContent={"center"}
-            align="center"
-            role="group"
-            p="4"
-            mx="2"
-            cursor="pointer"
-            isLoading={send}
-            _hover={{
-              bg: "#00ACC1",
-              color: "white",
-            }}
+    <Box display={["none", "block"]}>
+      <Flex>
+        <form onSubmit={handleSubmit(onSubmit)} onChange={onTextChange}>
+          <Textarea
+            borderWidth="1px"
+            w={{ sm: "100%", md: "540px" }}
+            direction={{ base: "column", md: "row" }}
+            padding={2}
+            fontSize={["16px", "19px"]}
+            placeholder="O que está acontecendo?"
+            maxLength={"140"}
+            {...register("content")}
+          />
+          <Flex
+            justifyContent={"end"}
+            position="fixed"
+            right="500px"
+            top="40px"
           >
-            Petwittar
-          </Button>
-        </Flex>
-      </form>
+            {count}/140
+            {errors.content && alert(errors.content.message)}
+            <Button
+              type="submit"
+              bg="#00ACC1"
+              color={"#FFFFFF"}
+              opacity={0.4}
+              border={"5"}
+              justifyContent={"center"}
+              align="center"
+              role="group"
+              p="4"
+              mx="2"
+              cursor="pointer"
+              isLoading={send}
+              _hover={{
+                bg: "#00ACC1",
+                color: "white",
+              }}
+            >
+              Petwittar
+            </Button>
+          </Flex>
+        </form>
+      </Flex>
     </Box>
   );
 }

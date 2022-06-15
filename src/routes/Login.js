@@ -7,13 +7,12 @@ import patasblue from "../images/petsblue.png";
 
 function HomePublic() {
   return (
-    <Flex display={"flex"} direction={["column", "row"]}>
+    <Flex direction={["column", "row"]}>
       <Flex align={"center"} justify="center">
-        <Flex>
+        <Flex display="block">
           <Image src={dogimage} w={["100%", "767px"]} h={["100%", "720px"]} />
           <Image
             src={patas}
-            display="flex"
             left={[37, 179]}
             top={[67, 354]}
             position={"absolute"}
@@ -45,7 +44,7 @@ function HomePublic() {
         </Flex>
       </Flex>
       <Flex justifyContent={"center"} align={"center"} marginLeft={"32px"}>
-        <Stack spacing={4} w={"full"}>
+        <Stack spacing={4}>
           <Image src={symbol} w={["0%", "76px"]} />
           <LoginForm />
         </Stack>

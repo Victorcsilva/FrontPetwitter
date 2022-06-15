@@ -38,14 +38,53 @@ function Perfil() {
 
   return (
     <Box>
-      <Flex border={"1px solid red"}>
-        <Image src={DogAvatar} display="flex" w={["56px", "0%"]} />
-        <Flex>
-          <Text>{userdata ? userdata.name : user.name}</Text>
-          <Text>@{userdata ? userdata.username : user.username}</Text>
+      <Flex
+        borderWidth="1px"
+        w={["360px", "683px"]}
+        // height={["Hug (130px)", "230px"]}
+        padding={1}
+      >
+        <Flex flexDirection="column" marginLeft={"34px"}>
+          <Image
+            src={DogAvatar}
+            w={["73px", "120px"]}
+            height={["73px", "120px"]}
+          />
+          <Text
+            fontSize={["16px", "18px"]}
+            fontWeight="700"
+            color="#000000"
+            fontStyle="normal"
+          >
+            Petposts
+          </Text>
+          <Box w="91.79px" height="3px" bg="#00ACC1" />
+        </Flex>
+
+        <Flex
+          flexDirection={"column"}
+          alignItems="center"
+          justifyContent="center"
+          marginLeft="16px"
+        >
+          <Text
+            fontSize={["22px", "24px"]}
+            fontWeight="700"
+            justifyContent="center"
+          >
+            {userdata ? userdata.name : user.name}
+          </Text>
+          <Text fontWeight={600} color={"gray.500"}>
+            {userdata ? userdata.username : user.username}
+          </Text>
         </Flex>
       </Flex>
-      <Flex direction={"column"}>
+
+      <Flex
+        w={["360px", "683px"]}
+        // height={["Hug (130px)", "230px"]}
+        padding={1}
+      >
         {data.map((element) => (
           <Postcard
             key={element.id}
