@@ -13,7 +13,6 @@ import {
 import Feed from "../components/Feed";
 import React from "react";
 import { IoAddCircleSharp } from "react-icons/io5";
-// import { PostForm } from "../components/PostForm";
 
 function Home() {
   const { isOpen, onOpen, onClose } = useDisclosure();

@@ -3,7 +3,7 @@ import { allposts } from "../services/auth_posts";
 import React from "react";
 import { useEffect, useState } from "react";
 import PostForm from "./PostForm";
-import Postcard from "./Postscard";
+import Postcard from "../routes/Postscard";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 function Feed() {
