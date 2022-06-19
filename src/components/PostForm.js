@@ -7,7 +7,7 @@ import React, { useState } from "react";
 
 const schema = yup
   .object({
-    content: yup.string().max(140).required("Texto obrigatorio"),
+    content: yup.string().max(140).required("Campo Obrigatorio"),
   })
   .required();
 

@@ -16,9 +16,6 @@ import { useForm } from "react-hook-form";
 import { signup } from "../services/auth";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { ToastContainer, toast } from "react-toastify";
-
-import "react-toastify/dist/ReactToastify.css";
 
 const schema = yup
   .object({
@@ -45,7 +42,6 @@ function SignupForm() {
   const onSubmit = async (data) => {
     try {
       const response = await signup(data);
-      console.log(notify);
       reset();
       return response;
     } catch (error) {
@@ -53,17 +49,6 @@ function SignupForm() {
     }
   };
   console.log(errors);
-
-  const notify = () =>
-    toast.success("🦄 Wow so easy!", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
 
   return (
     <Stack>
@@ -146,8 +131,6 @@ function SignupForm() {
           >
             Entrar
           </Button>
-
-          <ToastContainer />
         </Stack>
       </Flex>
       <Heading

@@ -29,8 +29,6 @@ function Login() {
     const formData = new FormData(event.currentTarget);
     const email = formData.get("email");
     const password = formData.get("password");
-    console.log(email);
-    console.log(password);
 
     await signin({ email, password });
     navigate(from, { replace: true });

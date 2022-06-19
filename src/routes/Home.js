@@ -13,11 +13,6 @@ function Home() {
     >
       <Wrap flexDirection={"column"} display="block">
         <Feed />
-        {/* <WrapItem>
-          <Center w="50%" bg="tomato">
-            Box 3
-          </Center>
-        </WrapItem> */}
       </Wrap>
     </Container>
   );

@@ -39,8 +39,7 @@ function Feed() {
     request();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [skips]);
-  const fetchData = () => setskips(skips + 10);
-  console.log(data);
+  const fetchData = () => setskips(skips + Number);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
