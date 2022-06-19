@@ -5,10 +5,13 @@ import Signup from "./routes/Signup";
 import Menu from "./components/Menu";
 import Perfil from "./routes/Perfil";
 import Home from "./routes/Home";
+// import { ToastContainer } from "react-toastify";
+// import { UserContextProvider } from "./context/UserContext";
 
 function App() {
   return (
     <AuthProvider>
+      {/* <UserContextProvider> */}
       <Routes>
         {/* {<Route path="/" element={<PublicPage />} />} */}
         <Route path="/login" element={<Login />} />
@@ -40,6 +43,8 @@ function App() {
           />
         </Route>
       </Routes>
+      {/* </UserContextProvider>
+      <ToastContainer /> */}
     </AuthProvider>
   );
 }

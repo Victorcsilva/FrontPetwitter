@@ -38,7 +38,7 @@ function PostForm() {
   };
 
   return (
-    <Box display={["none", "block"]}>
+    <Box display={["block", "block"]}>
       <Flex>
         <form onSubmit={handleSubmit(onSubmit)} onChange={onTextChange}>
           <Textarea
@@ -52,12 +52,13 @@ function PostForm() {
             {...register("content")}
           />
           <Flex
-            justifyContent={"end"}
-            position="fixed"
-            right="500px"
+            // position="fixed"
+            right={"199"}
             top="40px"
+            justifyContent="flex-end"
+            alignContent={"flex=end"}
           >
-            {count}/140
+            {count}/<h>140</h>
             {errors.content && alert(errors.content.message)}
             <Button
               type="submit"

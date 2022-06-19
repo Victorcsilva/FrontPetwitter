@@ -22,13 +22,7 @@ const Posts = (props) => {
   }, [authorId]);
   return (
     <Flex borderBlockStartWidth="1px">
-      <Image
-        src={DogAvatar}
-        w={["56px", "56px"]}
-        h="full"
-        marginTop="20px"
-        marginLeft="16px"
-      />
+      <Image src={DogAvatar} w={["56px", "56px"]} h="full" marginTop="20px" />
       <Flex flexDirection="column" marginLeft="8px" marginTop="20px">
         <Flex flexDirection="row" marginLeft="16px">
           <Link

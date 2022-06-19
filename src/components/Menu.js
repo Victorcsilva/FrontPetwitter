@@ -21,6 +21,7 @@ import {
   ModalBody,
   DrawerCloseButton,
   DrawerBody,
+  Box,
 } from "@chakra-ui/react";
 import { FiMenu, FiUser, FiHome, FiLogOut } from "react-icons/fi";
 import { Outlet, Link as routerLink } from "react-router-dom";
@@ -41,7 +42,7 @@ export default function Sidebar() {
 
   return (
     <Flex direction={["column", "row"]}>
-      <Flex display={["flex", "none"]}>
+      <Box display={["flex", "none"]}>
         <IconButton
           variant="outline"
           onClick={onOpen}
@@ -69,55 +70,81 @@ export default function Sidebar() {
           onClose={onClose}
           returnFocusOnClose={false}
           onOverlayClick={onClose}
-          flexDirection={"column"}
         >
           <DrawerContent>
             <DrawerCloseButton />
             <DrawerBody>
-              <Image src={DogAvatar} display="flex" w={["56px", "0%"]} />
-              <Link
-                as={routerLink}
-                to="/"
-                border={"0"}
-                justifyContent={"center"}
-                align="center"
-                role="group"
-                p="4"
-                mx="2"
-                cursor="pointer"
-                _hover={{
-                  bg: "#00ACC1",
-                  color: "white",
-                }}
-                onClick={onClose}
-              >
-                Home
-              </Link>
-              <Link
-                as={routerLink}
-                to="/perfil"
-                border={"0"}
-                justifyContent={"center"}
-                align="center"
-                role="group"
-                p="4"
-                mx="2"
-                cursor="pointer"
-                _hover={{
-                  bg: "#00ACC1",
-                  color: "white",
-                }}
-                onClick={onClose}
-              >
-                Perfil
-              </Link>
-              <Link variant="link" onClick={modalOnOpen}>
-                Sair
-              </Link>
+              <Flex flexDirection={"column"} justifyContent="center">
+                <Stack alignItems={"center"} p="4">
+                  <Image src={DogAvatar} w={["56px", "0%"]} />
+                </Stack>
+
+                <Link
+                  as={routerLink}
+                  to="/"
+                  border="0"
+                  justifyContent="center"
+                  align="center"
+                  role="group"
+                  p="4"
+                  mx="2"
+                  cursor="pointer"
+                  _hover={{
+                    bg: "#00ACC1",
+                    color: "white",
+                  }}
+                  onClick={onClose}
+                >
+                  Home
+                </Link>
+                <Link
+                  as={routerLink}
+                  to="/perfil"
+                  border={"0"}
+                  justifyContent={"center"}
+                  align="center"
+                  role="group"
+                  p="4"
+                  mx="2"
+                  cursor="pointer"
+                  _hover={{
+                    bg: "#00ACC1",
+                    color: "white",
+                  }}
+                  onClick={onClose}
+                >
+                  Perfil
+                </Link>
+                <Link
+                  variant="link"
+                  onClick={modalOnOpen}
+                  align="center"
+                  role="group"
+                  p="4"
+                  mx="2"
+                  cursor="pointer"
+                  _hover={{
+                    bg: "#00ACC1",
+                    color: "white",
+                  }}
+                >
+                  {" "}
+                  <Icon
+                    mr="4"
+                    fontSize="16"
+                    color="#00ACC1"
+                    _groupHover={{
+                      color: "white",
+                    }}
+                    as={FiLogOut}
+                  />
+                  Sair
+                </Link>
+              </Flex>
             </DrawerBody>
           </DrawerContent>
         </Drawer>
-      </Flex>
+      </Box>
 
       <Stack
         className="desktop stack"
@@ -209,13 +236,17 @@ export default function Sidebar() {
         <Link
           variant="link"
           onClick={modalOnOpen}
+          align="center"
           role="group"
           p="4"
           mx="2"
-          align="center"
-          justifyContent={"center"}
           cursor="pointer"
+          _hover={{
+            bg: "#00ACC1",
+            color: "white",
+          }}
         >
+          {" "}
           <Icon
             mr="4"
             fontSize="16"

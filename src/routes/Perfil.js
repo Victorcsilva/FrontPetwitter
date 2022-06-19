@@ -2,7 +2,7 @@ import { Box, Flex, Text, Image } from "@chakra-ui/react";
 import { allpost, getusers } from "../services/auth_posts";
 import React from "react";
 import { useEffect, useState } from "react";
-import Postcard from "./Postscard";
+import Postcard from "../components/Postscard";
 import DogAvatar from "../images/Avatar.png";
 import { useAuth } from "../context/auth-context";
 import { useParams } from "react-router-dom";
@@ -75,7 +75,7 @@ function Perfil() {
             {userdata ? userdata.name : user.name}
           </Text>
           <Text fontWeight={600} color={"gray.500"}>
-            {userdata ? userdata.username : user.username}
+            @{userdata ? userdata.username : user.username}
           </Text>
         </Flex>
       </Flex>
