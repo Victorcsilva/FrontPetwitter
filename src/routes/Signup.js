@@ -11,11 +11,11 @@ function Signup() {
     <Flex direction={["column", "row"]}>
       <Flex align={"center"} justify="center">
         <Flex display="block">
-          <Flex w={["100%", "767px"]}>
+          <Flex w={["100%", "667px"]}>
             <Image src={dogimage} w={["100%", "767px"]} h={["360%", "720px"]} />
             <Image
               src={patas}
-              left={[37, 179]}
+              left={[37, 139]}
               top={[67, 354]}
               position={"absolute"}
               w={["72px", "77px"]}
@@ -25,7 +25,7 @@ function Signup() {
               color={"#FFFFFF"}
               fontFamily={"Roboto"}
               fontWeight={"700"}
-              left={289}
+              left={240}
               top={[67, 354]}
               position={"absolute"}
             >

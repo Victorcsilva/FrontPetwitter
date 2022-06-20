@@ -8,10 +8,11 @@ import {
   Text,
   InputGroup,
   InputRightElement,
+  useToast,
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { Link as ReachLink } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { signup } from "../services/auth";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -30,7 +31,8 @@ const schema = yup
   .required();
 
 function SignupForm() {
-  const [show, setShow] = React.useState(false);
+  const toast = useToast();
+  const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   const {
     register,
@@ -42,13 +44,20 @@ function SignupForm() {
   const onSubmit = async (data) => {
     try {
       const response = await signup(data);
+      toast({
+        position: "bottom-right",
+        description: "Cadastro Feito com Sucesso",
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      });
       reset();
+
       return response;
     } catch (error) {
       console.log(error);
     }
   };
-  console.log(errors);
 
   return (
     <Stack>

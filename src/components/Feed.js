@@ -11,6 +11,7 @@ import {
   ModalHeader,
   useDisclosure,
   Center,
+  Image,
 } from "@chakra-ui/react";
 import { allposts } from "../services/auth_posts";
 import React from "react";
@@ -19,6 +20,7 @@ import PostForm from "./PostForm";
 import Postcard from "./Postscard";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { IoAddCircleSharp } from "react-icons/io5";
+import dog from "../images/1.gif";
 
 function Feed() {
   const [data, setdata] = useState([]);
@@ -39,7 +41,7 @@ function Feed() {
     request();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [skips]);
-  const fetchData = () => setskips(skips + Number);
+  const fetchData = () => setskips(skips + 10);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
@@ -62,9 +64,18 @@ function Feed() {
                 />
               }
               endMessage={
-                <p style={{ textAlign: "center" }}>
-                  <b>Ops não tem mais posts </b>
-                </p>
+                <Flex justifyContent={"center"}>
+                  <p
+                    style={{
+                      position: "absolute",
+                      color: "#00ACC1",
+                      textAlign: "center",
+                    }}
+                  >
+                    <b>Ops!!! não tem mais posts </b>
+                  </p>
+                  <Image src={dog} w="300px" h="auto" />
+                </Flex>
               }
             >
               {
@@ -89,8 +100,8 @@ function Feed() {
       </Flex>
       <Flex
         position="fixed"
-        top="340px"
-        right="10px"
+        top="420px"
+        right="70px"
         justifyContent={"flex-end"}
       >
         <Button
@@ -143,9 +154,18 @@ function Feed() {
                 />
               }
               endMessage={
-                <p style={{ textAlign: "center" }}>
-                  <b>Ops não tem mais posts </b>
-                </p>
+                <Flex justifyContent={"center"}>
+                  <p
+                    style={{
+                      position: "absolute",
+                      color: "#00ACC1",
+                      textAlign: "center",
+                    }}
+                  >
+                    <b>Ops!!! não tem mais posts </b>
+                  </p>
+                  <Image src={dog} w="300px" h="auto" />
+                </Flex>
               }
             >
               {

@@ -31,6 +31,7 @@ function Login() {
     const password = formData.get("password");
 
     await signin({ email, password });
+
     navigate(from, { replace: true });
   }
 

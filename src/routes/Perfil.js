@@ -19,9 +19,7 @@ function Perfil() {
   useEffect(() => {
     const request = async () => {
       try {
-        const response = await allpostsid(
-          `/posts/${user_id}?${user_id}:${user.id}?skip=${skips}&take=15`
-        );
+        const response = await allpostsid(skips, user.id);
 
         if (response.data.length < 10) sethasmore(false);
         skips === 0

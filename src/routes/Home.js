@@ -10,6 +10,7 @@ function Home() {
       maxW="1280px"
       padding="0"
       borderBlockStartWidth="1px"
+      // margin="auto"
     >
       <Wrap flexDirection={"column"} display="block">
         <Feed />

@@ -147,14 +147,12 @@ export default function Sidebar() {
       </Box>
 
       <Stack
-        className="desktop stack"
         bg={useColorModeValue("white", "gray.900")}
         borderRight="1px"
         borderRightColor={useColorModeValue("gray.200", "gray.700")}
-        w={{ base: "full", md: 60 }}
         h="full"
+        w="full"
         direction="column"
-        spacing={4}
         display={["none", "flex"]}
         maxW="600px"
       >
