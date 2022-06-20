@@ -29,37 +29,34 @@ function Login() {
     const formData = new FormData(event.currentTarget);
     const email = formData.get("email");
     const password = formData.get("password");
-    console.log(email);
-    console.log(password);
 
     await signin({ email, password });
+
     navigate(from, { replace: true });
   }
 
   return (
-    <Stack justifyContent={"center"} marginLeft={"32px"}>
-      <Heading
-        fontSize={["0%", "36px"]}
-        color={"#00ACC1"}
-        fontFamily={"Open Sans"}
-      >
-        Comece agora.<p>Conecte-se já.</p>
-      </Heading>
-      <Heading
-        fontSize={"24px"}
-        fontFamily={"Open Sans"}
-        fontWeight={"600"}
-        marginTop={"32px"}
-      >
-        {"Login"}
-      </Heading>
+    <Stack>
       <Flex as="form" mt="20px" onSubmit={handleSubmit}>
-        <Stack
-          maxWidth={["300px", "100%"]}
-          justifyContent={"center"}
-          marginTop={"32px"}
-        >
-          <Text mb="8px">E-mail:</Text>
+        <Stack maxWidth={["300px", "100%"]} align={"flex-start"}>
+          <Heading
+            fontSize={["0%", "36px"]}
+            color={"#00ACC1"}
+            fontFamily={"Open Sans"}
+          >
+            Comece agora.<p>Conecte-se já.</p>
+          </Heading>
+          <Heading
+            fontSize={"24px"}
+            fontFamily={"Open Sans"}
+            fontWeight={"600"}
+            marginTop="32px"
+          >
+            {"Login"}
+          </Heading>
+          <Text mb="8px" marginTop={"32px"}>
+            E-mail:
+          </Text>
           <Input
             name="email"
             type="text"

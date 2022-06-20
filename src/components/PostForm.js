@@ -1,17 +1,16 @@
-import { Box, Textarea, Button, Flex } from "@chakra-ui/react";
+import { Box, Textarea, Button, Flex, useToast } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { posts } from "../services/auth_posts";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import React, { useState } from "react";
 
-const schema = yup
-  .object({
-    content: yup.string().max(140).required("Texto obrigatorio"),
-  })
-  .required();
+const schema = yup.object({
+  content: yup.string().max(140).required("Campo obrigatorio"),
+});
 
 function PostForm() {
+  const toast = useToast();
   const [count, setCount] = useState(0);
   const onTextChange = (event) => {
     setCount(event.target.value.length);
@@ -29,16 +28,21 @@ function PostForm() {
     try {
       setSend(true);
       const response = await posts(data);
+      toast({
+        position: "top-right",
+        description: "🦄 Legal !! você fez um post",
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      });
       setSend(false);
       console.log(response);
       reset();
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   return (
-    <Box display={["none", "block"]}>
+    <Box display={["block", "block"]}>
       <Flex>
         <form onSubmit={handleSubmit(onSubmit)} onChange={onTextChange}>
           <Textarea
@@ -52,12 +56,13 @@ function PostForm() {
             {...register("content")}
           />
           <Flex
-            justifyContent={"end"}
-            position="fixed"
-            right="500px"
+            // position="fixed"
+            right={"199"}
             top="40px"
+            justifyContent="flex-end"
+            alignContent={"flex=end"}
           >
-            {count}/140
+            {count}/<h>140</h>
             {errors.content && alert(errors.content.message)}
             <Button
               type="submit"

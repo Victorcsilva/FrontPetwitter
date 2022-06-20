@@ -1,28 +1,39 @@
-import { Box, Flex, Text, Image } from "@chakra-ui/react";
-import { allpost, getusers } from "../services/auth_posts";
+import { Box, Flex, Text, Image, CircularProgress } from "@chakra-ui/react";
+import { allpostsid, getusers } from "../services/auth_posts";
 import React from "react";
 import { useEffect, useState } from "react";
-import Postcard from "./Postscard";
+import Postcard from "../components/Postscard";
 import DogAvatar from "../images/Avatar.png";
 import { useAuth } from "../context/auth-context";
 import { useParams } from "react-router-dom";
+import InfiniteScroll from "react-infinite-scroll-component";
+import dog from "../images/1.gif";
 
 function Perfil() {
   const [data, setdata] = useState([]);
   const [userdata, setuser] = useState(false);
   const { user } = useAuth();
   const { user_id } = useParams();
+  const [hasmore, sethasmore] = useState(true);
+  const [skips, setskips] = useState(0);
+
   useEffect(() => {
     const request = async () => {
       try {
-        const response = await allpost(user_id ? user_id : user.id);
-        setdata(response.data);
+        const response = await allpostsid(skips, user.id);
+
+        if (response.data.length < 10) sethasmore(false);
+        skips === 0
+          ? setdata(response.data)
+          : setdata(data.concat(response.data));
       } catch (error) {
         console.log(error.message);
       }
     };
     request();
-  }, [user.id, user_id]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [skips]);
+  const fetchData = () => setskips(skips + 10);
 
   useEffect(() => {
     const request = async () => {
@@ -38,12 +49,7 @@ function Perfil() {
 
   return (
     <Box>
-      <Flex
-        borderWidth="1px"
-        w={["360px", "683px"]}
-        // height={["Hug (130px)", "230px"]}
-        padding={1}
-      >
+      <Flex borderWidth="1px" w={["360px", "683px"]} padding={1}>
         <Flex flexDirection="column" marginLeft={"34px"}>
           <Image
             src={DogAvatar}
@@ -79,21 +85,51 @@ function Perfil() {
           </Text>
         </Flex>
       </Flex>
-
-      <Flex
-        w={["360px", "683px"]}
-        // height={["Hug (130px)", "230px"]}
-        padding={1}
-      >
-        {data.map((element) => (
-          <Postcard
-            key={element.id}
-            authorId={element.authorId}
-            createdAt={element.createdAt}
-            content={element.content}
+      <InfiniteScroll
+        dataLength={data.length}
+        next={fetchData}
+        hasMore={hasmore}
+        loader={
+          <CircularProgress
+            isIndeterminate
+            color="#00ACC1"
+            display={"flex"}
+            justifyContent={"center"}
+            py={"16px"}
           />
-        ))}
-      </Flex>
+        }
+        endMessage={
+          <Flex justifyContent={"center"}>
+            <p
+              style={{
+                position: "absolute",
+                color: "#00ACC1",
+                textAlign: "center",
+              }}
+            >
+              <b>Ops!!! não tem mais posts </b>
+            </p>
+            <Image src={dog} w="300px" h="auto" />
+          </Flex>
+        }
+      >
+        {
+          <Box
+            w={["360px", "683px"]}
+            // height={["Hug (130px)", "230px"]}
+            padding={1}
+          >
+            {data.map((element) => (
+              <Postcard
+                key={element.user_id}
+                authorId={element.authorId}
+                createdAt={element.createdAt}
+                content={element.content}
+              />
+            ))}
+          </Box>
+        }
+      </InfiniteScroll>
     </Box>
   );
 }
