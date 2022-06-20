@@ -10,6 +10,9 @@ O boilerplate também conta uma integração de autenticação com o [boilerplat
 - [Styled components](https://styled-components.com/)
 - [React Router](https://reactrouter.com/)
 - [Axios](https://github.com/axios/axios)
+- [React Icons]()
+- [Chakra](https://chakra-ui.com/)
+- [Yup]()
 
 ## Rodando a aplicação
 
@@ -34,3 +37,5 @@ Para gerar a aplicação que ficará hospedada no ambiente de produção rode `y
 `services`: pasta com arquivos que exportam funcões externas a aplicação como requisições.
 
 `routes`: contém as rotas da aplicação.
+
+`Images`: contém as imagens da aplicação.

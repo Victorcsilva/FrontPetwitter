@@ -7,6 +7,7 @@ import DogAvatar from "../images/Avatar.png";
 import { useAuth } from "../context/auth-context";
 import { useParams } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
+import dog from "../images/1.gif";
 
 function Perfil() {
   const [data, setdata] = useState([]);
@@ -48,12 +49,7 @@ function Perfil() {
 
   return (
     <Box>
-      <Flex
-        borderWidth="1px"
-        w={["360px", "683px"]}
-        // height={["Hug (130px)", "230px"]}
-        padding={1}
-      >
+      <Flex borderWidth="1px" w={["360px", "683px"]} padding={1}>
         <Flex flexDirection="column" marginLeft={"34px"}>
           <Image
             src={DogAvatar}
@@ -103,9 +99,18 @@ function Perfil() {
           />
         }
         endMessage={
-          <p style={{ textAlign: "center" }}>
-            <b>Ops não tem mais posts </b>
-          </p>
+          <Flex justifyContent={"center"}>
+            <p
+              style={{
+                position: "absolute",
+                color: "#00ACC1",
+                textAlign: "center",
+              }}
+            >
+              <b>Ops!!! não tem mais posts </b>
+            </p>
+            <Image src={dog} w="300px" h="auto" />
+          </Flex>
         }
       >
         {
@@ -116,7 +121,7 @@ function Perfil() {
           >
             {data.map((element) => (
               <Postcard
-                key={element.id}
+                key={element.user_id}
                 authorId={element.authorId}
                 createdAt={element.createdAt}
                 content={element.content}

@@ -100,8 +100,8 @@ function Feed() {
       </Flex>
       <Flex
         position="fixed"
-        top="420px"
-        right="70px"
+        top="600px"
+        right="60px"
         justifyContent={"flex-end"}
       >
         <Button

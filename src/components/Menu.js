@@ -150,8 +150,8 @@ export default function Sidebar() {
         bg={useColorModeValue("white", "gray.900")}
         borderRight="1px"
         borderRightColor={useColorModeValue("gray.200", "gray.700")}
-        h="full"
-        w="full"
+        h="800px"
+        w="400px"
         direction="column"
         display={["none", "flex"]}
         maxW="600px"

@@ -30,7 +30,7 @@ const Posts = (props) => {
     request();
   }, [authorId]);
   return (
-    <Flex borderBlockStartWidth="1px">
+    <Flex borderBlockStartWidth="1px ">
       <Image
         marginLeft="10px"
         src={DogAvatar}
